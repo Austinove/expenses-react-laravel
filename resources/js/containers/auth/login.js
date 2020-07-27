@@ -61,8 +61,8 @@ const Login = () => {
                                     validationSchema={loginSchema}
                                     onSubmit={(values, { setSubmitting }) => {
                                         setTimeout(() => {
-                                            // props.loginUserRequest(values);
                                             console.log(values);
+                                            setSubmitting(false);
                                         }, 400);
                                     }}
                                 >
@@ -112,17 +112,12 @@ const Login = () => {
                                                         onFocus={() =>
                                                             setEmailFocus(true)
                                                         }
-                                                        onBlur={() => {
-                                                            setEmailFocus(
-                                                                false
-                                                            );
-                                                            handleBlur;
-                                                        }}
+                                                        onBlur={ handleBlur }
                                                     ></Input>
                                                     {touched.email &&
                                                     errors.email ? (
                                                         <div className="text-danger mt-1 sm-font">
-                                                            {erroes.email}
+                                                            {errors.email}
                                                         </div>
                                                     ) : null}
                                                 </InputGroup>
@@ -149,15 +144,12 @@ const Login = () => {
                                                         onFocus={() =>
                                                             setLastFocus(true)
                                                         }
-                                                        onBlur={() => {
-                                                            setLastFocus(false);
-                                                            handleBlur;
-                                                        }}
+                                                        onBlur={ handleBlur }
                                                     ></Input>
                                                     {touched.password &&
                                                     errors.password ? (
                                                         <div className="text-danger mt-1 sm-font">
-                                                            {erroes.password}
+                                                            {errors.password}
                                                         </div>
                                                     ) : null}
                                                 </InputGroup>
@@ -178,9 +170,6 @@ const Login = () => {
                                                         <a
                                                             className="link"
                                                             href="/register"
-                                                            // onClick={e =>
-                                                            //     e.preventDefault()
-                                                            // }
                                                         >
                                                             Create Account
                                                         </a>

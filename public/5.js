@@ -109,8 +109,8 @@ var Login = function Login() {
     onSubmit: function onSubmit(values, _ref) {
       var setSubmitting = _ref.setSubmitting;
       setTimeout(function () {
-        // props.loginUserRequest(values);
         console.log(values);
+        setSubmitting(false);
       }, 400);
     }
   }, function (_ref2) {
@@ -148,13 +148,10 @@ var Login = function Login() {
       onFocus: function onFocus() {
         return setEmailFocus(true);
       },
-      onBlur: function onBlur() {
-        setEmailFocus(false);
-        handleBlur;
-      }
+      onBlur: handleBlur
     }), touched.email && errors.email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-danger mt-1 sm-font"
-    }, erroes.email) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroup"], {
+    }, errors.email) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroup"], {
       className: "no-border input-lg" + (lastFocus ? " input-group-focus" : "")
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroupAddon"], {
       addonType: "prepend"
@@ -170,13 +167,10 @@ var Login = function Login() {
       onFocus: function onFocus() {
         return setLastFocus(true);
       },
-      onBlur: function onBlur() {
-        setLastFocus(false);
-        handleBlur;
-      }
+      onBlur: handleBlur
     }), touched.password && errors.password ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-danger mt-1 sm-font"
-    }, erroes.password) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardFooter"], {
+    }, errors.password) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardFooter"], {
       className: "text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
       block: true,
@@ -189,10 +183,7 @@ var Login = function Login() {
       className: "pull-left"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       className: "link",
-      href: "/register" // onClick={e =>
-      //     e.preventDefault()
-      // }
-
+      href: "/register"
     }, "Create Account")))));
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Footer_index__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
 };
