@@ -16,8 +16,10 @@ import {
 } from "reactstrap";
 
 const SignUp = () => {
-    const [firstFocus, setFirstFocus] = useState(false);
+    const [firstFocus, setFirstFocus] = useState(false); 
     const [lastFocus, setLastFocus] = useState(false);
+    const [passwordFocus, setPasswordFocus] = useState(false)
+    const [confPasswordFocus, setConfPasswordFocus] = useState(false)
     const [emailFocus, setEmailFocus] = useState(false);
     return (
         <>
@@ -87,6 +89,7 @@ const SignUp = () => {
                                             </InputGroupText>
                                         </InputGroupAddon>
                                         <Input
+                                            name="firstName"
                                             placeholder="First Name..."
                                             type="text"
                                             onFocus={() => setFirstFocus(true)}
@@ -107,6 +110,7 @@ const SignUp = () => {
                                             </InputGroupText>
                                         </InputGroupAddon>
                                         <Input
+                                            name="lastName"
                                             placeholder="Last Name..."
                                             type="text"
                                             onFocus={() => setLastFocus(true)}
@@ -127,10 +131,61 @@ const SignUp = () => {
                                             </InputGroupText>
                                         </InputGroupAddon>
                                         <Input
+                                            name="email"
                                             placeholder="Email..."
                                             type="text"
                                             onFocus={() => setEmailFocus(true)}
                                             onBlur={() => setEmailFocus(false)}
+                                        ></Input>
+                                    </InputGroup>
+                                    <InputGroup
+                                        className={
+                                            "no-border input-lg" +
+                                            (passwordFocus
+                                                ? " input-group-focus"
+                                                : "")
+                                        }
+                                    >
+                                        <InputGroupAddon addonType="prepend">
+                                            <InputGroupText>
+                                                <i className="now-ui-icons text_caps-small"></i>
+                                            </InputGroupText>
+                                        </InputGroupAddon>
+                                        <Input
+                                            name="password"
+                                            placeholder="password"
+                                            type="password"
+                                            onFocus={() =>
+                                                setPasswordFocus(true)
+                                            }
+                                            onBlur={() =>
+                                                setPasswordFocus(false)
+                                            }
+                                        ></Input>
+                                    </InputGroup>
+                                    <InputGroup
+                                        className={
+                                            "no-border input-lg" +
+                                            (confPasswordFocus
+                                                ? " input-group-focus"
+                                                : "")
+                                        }
+                                    >
+                                        <InputGroupAddon addonType="prepend">
+                                            <InputGroupText>
+                                                <i className="now-ui-icons text_caps-small"></i>
+                                            </InputGroupText>
+                                        </InputGroupAddon>
+                                        <Input
+                                            name="confirmPassword"
+                                            placeholder="Confirm Password"
+                                            type="password"
+                                            onFocus={() =>
+                                                setConfPasswordFocus(true)
+                                            }
+                                            onBlur={() =>
+                                                setConfPasswordFocus(false)
+                                            }
                                         ></Input>
                                     </InputGroup>
                                 </CardBody>
@@ -152,7 +207,6 @@ const SignUp = () => {
                                         className="btn-round btn-white"
                                         color="default"
                                         // to="/login"
-                                        outline
                                         size="md"
                                     // tag={Link}
                                     >

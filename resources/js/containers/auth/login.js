@@ -13,8 +13,17 @@ import {
     Container,
     Col,
 } from "reactstrap";
+import * as Yup from "yup";
+import { Formik } from "formik";
 import NavHeader from "../components/Navbar";
 import Footer from "../components/Footer/index";
+
+const loginSchema = Yup.object({
+    email: Yup.string()
+    .email("Invalid email")
+    .required("Email is requiured"),
+    password: Yup.string().required("Password is required")
+});
 
 const Login = () => {
     const [emailFocus, setEmailFocus] = useState(false);
@@ -32,7 +41,7 @@ const Login = () => {
     }, []);
     return (
         <>
-            <NavHeader navType="login"/>
+            <NavHeader navType="login" />
             <div className="page-header clear-filter" filter-color="blue">
                 <div
                     className="page-header-image"
@@ -47,87 +56,140 @@ const Login = () => {
                     <Container>
                         <Col className="ml-auto mr-auto" md="4">
                             <Card className="card-login card-plain">
-                                <Form action="" className="form" method="">
-                                    <CardHeader className="text-center">
-                                        <div className="logo-container">
-                                            <img
-                                                alt="Logo"
-                                                src={require("../../../../public/images/img/now-logo.png")}
-                                            ></img>
-                                        </div>
-                                    </CardHeader>
-                                    <CardBody>
-                                        <InputGroup
-                                            className={
-                                                "no-border" +
-                                                (emailFocus
-                                                    ? " input-group-focus"
-                                                    : "")
-                                            }
+                                <Formik
+                                    initialValues={{ email: "", password: "" }}
+                                    validationSchema={loginSchema}
+                                    onSubmit={(values, { setSubmitting }) => {
+                                        setTimeout(() => {
+                                            // props.loginUserRequest(values);
+                                            console.log(values);
+                                        }, 400);
+                                    }}
+                                >
+                                    {({
+                                        values,
+                                        errors,
+                                        touched,
+                                        handleChange,
+                                        handleBlur,
+                                        handleSubmit,
+                                        isSubmitting
+                                    }) => (
+                                        <Form
+                                            role="form"
+                                            onSubmit={handleSubmit}
                                         >
-                                            <InputGroupAddon addonType="prepend">
-                                                <InputGroupText>
-                                                    <i className="now-ui-icons ui-1_email-85"></i>
-                                                </InputGroupText>
-                                            </InputGroupAddon>
-                                            <Input
-                                                placeholder="Email..."
-                                                type="email"
-                                                onFocus={() => setEmailFocus(true)}
-                                                onBlur={() => setEmailFocus(false)}
-                                            ></Input>
-                                        </InputGroup>
-                                        <InputGroup
-                                            className={
-                                                "no-border input-lg" +
-                                                (lastFocus
-                                                    ? " input-group-focus"
-                                                    : "")
-                                            }
-                                        >
-                                            <InputGroupAddon addonType="prepend">
-                                                <InputGroupText>
-                                                    <i className="now-ui-icons text_caps-small"></i>
-                                                </InputGroupText>
-                                            </InputGroupAddon>
-                                            <Input
-                                                placeholder="**********"
-                                                type="password"
-                                                onFocus={() =>
-                                                    setLastFocus(true)
-                                                }
-                                                onBlur={() =>
-                                                    setLastFocus(false)
-                                                }
-                                            ></Input>
-                                        </InputGroup>
-                                    </CardBody>
-                                    <CardFooter className="text-center">
-                                        <Button
-                                            block
-                                            className="btn-round"
-                                            color="info"
-                                            href="#pablo"
-                                            onClick={e => e.preventDefault()}
-                                            size="lg"
-                                        >
-                                            Login
-                                        </Button>
-                                        <div className="pull-left">
-                                            <h6>
-                                                <a
-                                                    className="link"
-                                                    href="/register"
-                                                    // onClick={e =>
-                                                    //     e.preventDefault()
-                                                    // }
+                                            <CardHeader className="text-center">
+                                                <div className="logo-container">
+                                                    <img
+                                                        alt="Logo"
+                                                        src={require("../../../../public/images/img/now-logo.png")}
+                                                    ></img>
+                                                </div>
+                                            </CardHeader>
+                                            <CardBody>
+                                                <InputGroup
+                                                    className={
+                                                        "no-border" +
+                                                        (emailFocus
+                                                            ? " input-group-focus"
+                                                            : "")
+                                                    }
                                                 >
-                                                    Create Account
-                                                </a>
-                                            </h6>
-                                        </div>
-                                    </CardFooter>
-                                </Form>
+                                                    <InputGroupAddon addonType="prepend">
+                                                        <InputGroupText>
+                                                            <i className="now-ui-icons ui-1_email-85"></i>
+                                                        </InputGroupText>
+                                                    </InputGroupAddon>
+                                                    <Input
+                                                        required
+                                                        placeholder="Email..."
+                                                        value={values.email}
+                                                        name="email"
+                                                        id="email"
+                                                        type="email"
+                                                        onChange={handleChange}
+                                                        onFocus={() =>
+                                                            setEmailFocus(true)
+                                                        }
+                                                        onBlur={() => {
+                                                            setEmailFocus(
+                                                                false
+                                                            );
+                                                            handleBlur;
+                                                        }}
+                                                    ></Input>
+                                                    {touched.email &&
+                                                    errors.email ? (
+                                                        <div className="text-danger mt-1 sm-font">
+                                                            {erroes.email}
+                                                        </div>
+                                                    ) : null}
+                                                </InputGroup>
+                                                <InputGroup
+                                                    className={
+                                                        "no-border input-lg" +
+                                                        (lastFocus
+                                                            ? " input-group-focus"
+                                                            : "")
+                                                    }
+                                                >
+                                                    <InputGroupAddon addonType="prepend">
+                                                        <InputGroupText>
+                                                            <i className="now-ui-icons text_caps-small"></i>
+                                                        </InputGroupText>
+                                                    </InputGroupAddon>
+                                                    <Input
+                                                        required
+                                                        name="password"
+                                                        value={values.password}
+                                                        placeholder="**********"
+                                                        type="password"
+                                                        onChange={handleChange}
+                                                        onFocus={() =>
+                                                            setLastFocus(true)
+                                                        }
+                                                        onBlur={() => {
+                                                            setLastFocus(false);
+                                                            handleBlur;
+                                                        }}
+                                                    ></Input>
+                                                    {touched.password &&
+                                                    errors.password ? (
+                                                        <div className="text-danger mt-1 sm-font">
+                                                            {erroes.password}
+                                                        </div>
+                                                    ) : null}
+                                                </InputGroup>
+                                            </CardBody>
+                                            <CardFooter className="text-center">
+                                                <Button
+                                                    block
+                                                    className="btn-round"
+                                                    color="info"
+                                                    type="submit"
+                                                    disabled={isSubmitting}
+                                                    size="lg"
+                                                >
+                                                    Login
+                                                </Button>
+                                                <div className="pull-left">
+                                                    <h6>
+                                                        <a
+                                                            className="link"
+                                                            href="/register"
+                                                            // onClick={e =>
+                                                            //     e.preventDefault()
+                                                            // }
+                                                        >
+                                                            Create Account
+                                                        </a>
+                                                    </h6>
+                                                </div>
+                                            </CardFooter>
+                                        </Form>
+                                    )}
+                                </Formik>
                             </Card>
                         </Col>
                     </Container>

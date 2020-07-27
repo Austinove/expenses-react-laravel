@@ -51,8 +51,18 @@ var SignUp = function SignUp() {
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      emailFocus = _useState6[0],
-      setEmailFocus = _useState6[1];
+      passwordFocus = _useState6[0],
+      setPasswordFocus = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      confPasswordFocus = _useState8[0],
+      setConfPasswordFocus = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      emailFocus = _useState10[0],
+      setEmailFocus = _useState10[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "section section-signup",
@@ -111,6 +121,7 @@ var SignUp = function SignUp() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroupText"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "now-ui-icons users_circle-08"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    name: "firstName",
     placeholder: "First Name...",
     type: "text",
     onFocus: function onFocus() {
@@ -126,6 +137,7 @@ var SignUp = function SignUp() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroupText"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "now-ui-icons text_caps-small"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    name: "lastName",
     placeholder: "Last Name...",
     type: "text",
     onFocus: function onFocus() {
@@ -141,6 +153,7 @@ var SignUp = function SignUp() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroupText"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "now-ui-icons ui-1_email-85"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    name: "email",
     placeholder: "Email...",
     type: "text",
     onFocus: function onFocus() {
@@ -148,6 +161,38 @@ var SignUp = function SignUp() {
     },
     onBlur: function onBlur() {
       return setEmailFocus(false);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroup"], {
+    className: "no-border input-lg" + (passwordFocus ? " input-group-focus" : "")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroupAddon"], {
+    addonType: "prepend"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroupText"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "now-ui-icons text_caps-small"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    name: "password",
+    placeholder: "password",
+    type: "password",
+    onFocus: function onFocus() {
+      return setPasswordFocus(true);
+    },
+    onBlur: function onBlur() {
+      return setPasswordFocus(false);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroup"], {
+    className: "no-border input-lg" + (confPasswordFocus ? " input-group-focus" : "")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroupAddon"], {
+    addonType: "prepend"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroupText"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "now-ui-icons text_caps-small"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    name: "confirmPassword",
+    placeholder: "Confirm Password",
+    type: "password",
+    onFocus: function onFocus() {
+      return setConfPasswordFocus(true);
+    },
+    onBlur: function onBlur() {
+      return setConfPasswordFocus(false);
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardFooter"], {
     className: "text-center"
@@ -167,7 +212,6 @@ var SignUp = function SignUp() {
     className: "btn-round btn-white",
     color: "default" // to="/login"
     ,
-    outline: true,
     size: "md" // tag={Link}
 
   }, "Have an Account"))))))));
