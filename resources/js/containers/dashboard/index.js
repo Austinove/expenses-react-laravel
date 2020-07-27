@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Table, Card, CardBody, FormGroup, Label, Input, Form, Button } from "reactstrap";
 import NavHeader from "../components/Navbar";
 import Datetime from "react-datetime";
+import CustomModal from "../components/modal";
 
 class Dashboard extends Component {
     render() {
@@ -13,7 +14,9 @@ class Dashboard extends Component {
                         <Card>
                             <CardBody>
                                 <strong>Expences Table</strong>
-                                <Button size="sm" className="btn-round btn-info pull-right" color="default"><i class="fa fa-plus" aria-hidden="true"></i> Add Expense</Button>
+                                <div className="pull-right">
+                                    <CustomModal iconName="fa fa-plus" btnName="Add Expense" btnColor="info"/>
+                                </div>
                             </CardBody>
                         </Card>
                     </Row>
