@@ -441,6 +441,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -455,6 +459,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+var expenseSchema = yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
+  budget: yup__WEBPACK_IMPORTED_MODULE_2__["number"]().required("budget required"),
+  expenseDescription: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required("Description is required")
+});
 
 var CustomModal = function CustomModal(_ref) {
   var btnName = _ref.btnName,
@@ -495,36 +505,74 @@ var CustomModal = function CustomModal(_ref) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     "aria-hidden": true
-  }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "budget"
-  }, "Expense Budget"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
-    id: "budget",
-    size: "sm",
-    placeholder: "Eg 200000",
-    type: "number"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "expenseDescription"
-  }, "Expense Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
-    id: "expenseDescription",
-    placeholder: "Enter Description",
-    rows: "3",
-    size: "sm",
-    type: "textarea"
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    color: "secondary",
-    type: "button",
-    onClick: function onClick() {
-      return setModalLive(false);
+  }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_3__["Formik"], {
+    initialValues: {
+      budget: "",
+      expenseDescription: ""
+    },
+    validationSchema: expenseSchema,
+    onSubmit: function onSubmit(values, _ref2) {
+      var setSubmitting = _ref2.setSubmitting;
+      setTimeout(function () {
+        console.log(values);
+        setSubmitting(false);
+      }, 4000);
     }
-  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    color: "primary",
-    type: "button" // onClick={() => setModalLive(false)}
+  }, function (_ref3) {
+    var _React$createElement;
 
-  }, "Save changes"))));
+    var values = _ref3.values,
+        errors = _ref3.errors,
+        touched = _ref3.touched,
+        handleChange = _ref3.handleChange,
+        handleBlur = _ref3.handleBlur,
+        handleSubmit = _ref3.handleSubmit,
+        isSubmitting = _ref3.isSubmitting;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+      role: "form",
+      onSubmit: handleSubmit
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "modal-body"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      htmlFor: "budget"
+    }, "Expense Budget"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+      name: "budget",
+      id: "budget",
+      value: values.budget,
+      onChange: handleChange,
+      onBlur: handleBlur,
+      bsSize: "sm",
+      placeholder: "Eg 200000",
+      type: "number"
+    }), touched.budget && errors.budget ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-danger mt-1 sm-font"
+    }, errors.budget) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      htmlFor: "expenseDescription"
+    }, "Expense Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+      id: "expenseDescription",
+      name: "expenseDescription",
+      placeholder: "Enter Description",
+      value: values.expenseDescription,
+      onChange: handleChange,
+      onBlur: handleBlur,
+      rows: "3",
+      bsSize: "sm",
+      type: "textarea"
+    }), touched.expenseDescription && errors.expenseDescription ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-danger mt-1 sm-font"
+    }, errors.expenseDescription) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "modal-footer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      color: "secondary",
+      type: "button",
+      onClick: function onClick() {
+        return setModalLive(false);
+      }
+    }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], (_React$createElement = {
+      color: "primary",
+      type: "button"
+    }, _defineProperty(_React$createElement, "type", "submit"), _defineProperty(_React$createElement, "disabled", isSubmitting), _React$createElement), "Save changes")));
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CustomModal);
